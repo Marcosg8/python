@@ -1,0 +1,114 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <title>SumaAPI | Resultado</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="{{ url_for('static', path='css/custom.css') }}" rel="stylesheet">
+</head>
+<body class="min-h-screen">
+  <!-- Navegación -->
+  <nav class="nav">
+    <div class="container">
+      <a href="/" class="nav-title">
+        <span>🧮</span>
+        SumaAPI
+      </a>
+    </div>
+  </nav>
+
+  <!-- Contenido principal -->
+  <main class="min-h-screen flex flex-col items-center justify-center">
+    <div class="container space-y-6">
+      
+      <!-- Tarjeta de la operación -->
+      <div class="card result-card">
+        <!-- Operación matemática -->
+        <div class="result-container">
+          <h2 class="result-title">Operación realizada</h2>
+          <div class="result-operation">
+            <span class="number">{{ numero1 }}</span>
+            <span class="operator">+</span>
+            <span class="number">{{ numero2 }}</span>
+            <span class="equals">=</span>
+            <span class="result">{{ suma }}</span>
+          </div>
+        </div>
+
+        <!-- Resultado destacado -->
+        <div class="result-highlight">
+          <p class="label">Resultado Final</p>
+          <p class="value">{{ suma }}</p>
+          <p class="description">{{ numero1 }} + {{ numero2 }}</p>
+        </div>
+      </div>
+
+      <!-- Tarjeta de detalles -->
+      <div class="card details-card">
+        <h3 class="details-title">Detalles de la operación</h3>
+        <div class="space-y-4">
+          <div class="details-row">
+            <span class="details-label">Primer número:</span>
+            <span class="details-value">{{ numero1 }}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-label">Segundo número:</span>
+            <span class="details-value">{{ numero2 }}</span>
+          </div>
+          <div class="details-row">
+            <span class="details-label">Operación:</span>
+            <span class="details-value primary">Suma (+)</span>
+          </div>
+          <div class="details-row">
+            <span class="details-label">Resultado:</span>
+            <span class="details-value success">{{ suma }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Botones de acción -->
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <a href="/" class="btn btn-primary text-center">
+          Nuevo Cálculo
+        </a>
+        
+        <button onclick="copiarResultado()" class="btn btn-secondary">
+          Copiar Resultado
+        </button>
+      </div>
+
+      <!-- Stats -->
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div class="stat-card">
+          <div class="stat-icon success">✓</div>
+          <div class="stat-label">Exitoso</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon primary">⚡</div>
+          <div class="stat-label">Rápido</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon purple">🎯</div>
+          <div class="stat-label">Preciso</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon cyan">💯</div>
+          <div class="stat-label">Confiable</div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- JavaScript -->
+  <script src="{{ url_for('static', path='js/common.js') }}"></script>
+  <script src="{{ url_for('static', path='js/resultados.js') }}"></script>
+  <script>
+    // Datos específicos de esta página (desde el servidor)
+    window.pageData = {
+      resultado: {{ suma }},
+      numero1: {{ numero1 }},
+      numero2: {{ numero2 }}
+    };
+  </script>
+</body>
+</html>
