@@ -24,7 +24,10 @@ Ejecución (PowerShell)
 1) Ejecutar el runner Python (recomendado):
 
 ```powershell
-python .\build_insert_from_tickets.py --sql .\InsertUnderlineTicket.sql --verbose
+Este en mi casa python .\build_insert_from_tickets.py --sql .\InsertUnderlineTicket.sql --verbose
+
+Este en clase $env:PATH = 'C:\xampp\mysql\bin;' + $env:PATH
+& ".\.venv\Scripts\python.exe" .\build_insert_from_tickets.py --sql .\InsertUnderlineTicket.sql --verbose
 ```
 
 - `--verbose` muestra cada sentencia SQL mientras se ejecuta y los errores asociados.
