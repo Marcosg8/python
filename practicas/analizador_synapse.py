@@ -1,13 +1,13 @@
 import os
 import sys
 
-def solicitar_nombre_archivo():
+def pedirArchivo():
     if len(sys.argv) > 1:
         return sys.argv[1]
     nombre = input("Nombre del archivo:").strip()
     return nombre
 
-def leer_partidas(ruta):
+def verPartidas(ruta):
     partidas = []
     errores = 0
     if not os.path.isfile(ruta):
@@ -36,7 +36,7 @@ def leer_partidas(ruta):
             })
     return partidas, errores
 
-def procesar_datos(partidas):
+def comprobarDatos(partidas):
     total_partidas = len(partidas)
     jugadores_unicos = set()
     suma_puntajes = 0
@@ -56,7 +56,7 @@ def procesar_datos(partidas):
         "mejor_por_jugador": mejor_por_jugador
     }
 
-def generar_resumen(ruta_salida, resumen, errores):
+def crearResumen(ruta_salida, resumen, errores):
     with open(ruta_salida, "w", encoding="utf-8") as f:
         f.write("RESUMEN de las partidas\n\n")
         f.write(f"Todas las partidas: {resumen['total_partidas']}\n")
@@ -64,7 +64,7 @@ def generar_resumen(ruta_salida, resumen, errores):
         f.write(f"Media de puntos: {resumen['puntuacion_media']}\n")
         f.write(f"Lineas saltadas: {errores}\n")
 
-def generar_ranking(ruta_salida, mejor_por_jugador):
+def crearRanking(ruta_salida, mejor_por_jugador):
     orden = sorted(mejor_por_jugador.items(), key=lambda x: x[1], reverse=True)
     with open(ruta_salida, "w", encoding="utf-8") as f:
         f.write("Mejores jugadores\n\n")
@@ -73,16 +73,16 @@ def generar_ranking(ruta_salida, mejor_por_jugador):
 
 def main():
     try:
-        nombre = solicitar_nombre_archivo()
+        nombre = pedirArchivo()
         ruta = nombre if os.path.isabs(nombre) else os.path.join(os.getcwd(), nombre)
-        partidas, errores = leer_partidas(ruta)
+        partidas, errores = verPartidas(ruta)
     except FileNotFoundError as e:
         print(e)
         return
-    resumen = procesar_datos(partidas)
+    resumen = comprobarDatos(partidas)
     carpeta = os.path.dirname(ruta) or os.getcwd()
-    generar_resumen(os.path.join(carpeta, "resumen_general.txt"), resumen, errores)
-    generar_ranking(os.path.join(carpeta, "ranking_jugadores.txt"), resumen["mejor_por_jugador"])
+    crearResumen(os.path.join(carpeta, "resumen_general.txt"), resumen, errores)
+    crearRanking(os.path.join(carpeta, "ranking_jugadores.txt"), resumen["mejor_por_jugador"])
     print("Sin problema de lectura")
     print(f"Partidas válidas: {resumen['total_partidas']}, jugadores distintos: {resumen['cantidad_jugadores']}")
     print(f"Se crearon estos dos archivos .txt: {os.path.join(carpeta,'resumen_general.txt')}, {os.path.join(carpeta,'ranking_jugadores.txt')}")
