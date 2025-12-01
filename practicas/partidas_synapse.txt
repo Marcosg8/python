@@ -1,0 +1,7 @@
+NeoX;Principiante;120;15
+LunaCoder;Intermedio;250;30
+NeoX;Avanzado;480;45
+PixelWarrior;Principiante;90;10
+GamerOne;Intermedio;230;25
+GamerOne;Principiante;100;2
+
