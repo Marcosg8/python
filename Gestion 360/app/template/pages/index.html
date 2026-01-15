@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestor de Empleados</title>
+    <link rel="stylesheet" href="/static/css/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Gestor de Empleados</h1>
+        
+        <!-- Formulario para agregar empleado -->
+        <div class="form-section">
+            <h2>Agregar Nuevo Empleado</h2>
+            <form id="formAgregar">
+                <div class="form-group">
+                    <label for="nombre">Nombre:</label>
+                    <input type="text" id="nombre" name="nombre" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido1">1er Apellido:</label>
+                    <input type="text" id="apellido1" name="apellido1" required>
+                </div>
+                <div class="form-group">
+                    <label for="apellido2">2do Apellido:</label>
+                    <input type="text" id="apellido2" name="apellido2" required>
+                </div>
+                <div class="form-group">
+                    <label for="departamento">Departamento:</label>
+                    <input type="text" id="departamento" name="departamento" required>
+                </div>
+                <div class="form-group">
+                    <label for="tipoJornada">Tipo de Jornada:</label>
+                    <select id="tipoJornada" name="tipoJornada" required>
+                        <option value="">Seleccionar</option>
+                        <option value="Completa">Completa</option>
+                        <option value="Media">Media</option>
+                        <option value="Parcial">Parcial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="horas">Horas:</label>
+                    <input type="number" id="horas" name="horas" required>
+                </div>
+                <div class="form-group">
+                    <label for="horaFichar">Hora de Fichar:</label>
+                    <input type="number" id="horaFichar" name="horaFichar" required>
+                </div>
+                <div class="form-group">
+                    <label for="sueldo">Sueldo:</label>
+                    <input type="number" id="sueldo" name="sueldo" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Agregar Empleado</button>
+            </form>
+        </div>
+
+        <!-- Tabla de empleados -->
+        <div class="table-section">
+            <h2>Lista de Empleados</h2>
+            <div id="mensajeEstado"></div>
+            <table id="tablaEmpleados">
+                <thead>
+                    <tr>
+                        <th>Nombre</th>
+                        <th>1er Apellido</th>
+                        <th>2do Apellido</th>
+                        <th>Departamento</th>
+                        <th>Tipo Jornada</th>
+                        <th>Horas</th>
+                        <th>Hora Fichar</th>
+                        <th>Sueldo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="cuerpoTabla">
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Modal para editar -->
+    <div id="modalEditar" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <h2>Editar Empleado</h2>
+            <form id="formEditar">
+                <input type="hidden" id="editarNombre">
+                <div class="form-group">
+                    <label for="editarApellido1">1er Apellido:</label>
+                    <input type="text" id="editarApellido1" required>
+                </div>
+                <div class="form-group">
+                    <label for="editarApellido2">2do Apellido:</label>
+                    <input type="text" id="editarApellido2" required>
+                </div>
+                <div class="form-group">
+                    <label for="editarDepartamento">Departamento:</label>
+                    <input type="text" id="editarDepartamento" required>
+                </div>
+                <div class="form-group">
+                    <label for="editarTipoJornada">Tipo de Jornada:</label>
+                    <select id="editarTipoJornada" required>
+                        <option value="Completa">Completa</option>
+                        <option value="Media">Media</option>
+                        <option value="Parcial">Parcial</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="editarHoras">Horas:</label>
+                    <input type="number" id="editarHoras" required>
+                </div>
+                <div class="form-group">
+                    <label for="editarHoraFichar">Hora de Fichar:</label>
+                    <input type="number" id="editarHoraFichar" required>
+                </div>
+                <div class="form-group">
+                    <label for="editarSueldo">Sueldo:</label>
+                    <input type="number" id="editarSueldo" required>
+                </div>
+                <button type="submit" class="btn btn-primary">Guardar Cambios</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="/static/js/script.js"></script>
+</body>
+</html>
